@@ -1,0 +1,17 @@
+test_cases:
+  - product_codes:
+      - '001'
+      - '002'
+      - '003'
+    expected_total: 66.78
+  - product_codes:
+      - '001'
+      - '003'
+      - '001'
+    expected_total: 36.95
+  - product_codes:
+      - '001'
+      - '002'
+      - '001'
+      - '003'
+    expected_total: 73.76

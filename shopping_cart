@@ -1,0 +1,55 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'rubygems'
+require 'bundler/setup'
+require 'irb'
+require 'yaml'
+
+Bundler.require(:default)
+
+APP_TITLE = 'Shopping Cart'
+
+puts Artii::Base.new.asciify(APP_TITLE).red
+
+Dir[File.dirname(__FILE__) + '/app/**/*.rb'].each do |file|
+  puts 'loading file:'.purple + file
+  require file
+end
+
+AppData.instance
+
+def run_one_test(test_case, ind, total_test_count)
+  puts "Test case #{ind + 1} of #{total_test_count}"
+  Tester.new(test_case).test_case!
+  puts "\n\n"
+end
+
+def run_test_suite
+  puts "\nRunning test suite:\n".red
+
+  test_data = File.open(File.dirname(__FILE__) + '/test/data.yml').read
+  test_cases = YAML.safe_load(test_data).fetch('test_cases')
+
+  test_cases.each_with_index do |test_case, ind|
+    run_one_test(test_case, ind, test_cases.count)
+  end
+end
+
+def run_irb_mode
+  AwesomePrint.irb!
+  IRB.start
+end
+
+def run_interface_mode
+  Interface.new.call
+end
+
+case ARGV[0].to_s.downcase
+when 'irb'
+  run_irb_mode
+when 'test'
+  run_test_suite
+else
+  run_interface_mode
+end
