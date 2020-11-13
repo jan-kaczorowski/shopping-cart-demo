@@ -32,8 +32,9 @@ class Tester
   end
 
   def print_test_result
-    msg = total == expected_total ? '[TEST CASE PASSED]'.green : '[TEST CASE FAILED]'.red
+    passed_msg = "[TEST CASE PASSED] \u2714".green
+    failed_msg = "[TEST CASE FAILED] \u274c".red
 
-    puts msg
+    puts total == expected_total ? passed_msg : failed_msg
   end
 end

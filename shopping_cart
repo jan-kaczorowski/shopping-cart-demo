@@ -5,6 +5,7 @@ require 'rubygems'
 require 'bundler/setup'
 require 'irb'
 require 'yaml'
+require_relative './app/cart_item_helpers'
 
 Bundler.require(:default)
 
@@ -37,6 +38,7 @@ def run_test_suite
 end
 
 def run_irb_mode
+  ARGV.clear
   AwesomePrint.irb!
   IRB.start
 end

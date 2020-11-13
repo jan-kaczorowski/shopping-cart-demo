@@ -1,6 +1,6 @@
 [
   {
-    "type": "basket_value_discount",
+    "type": "BasketValueDiscount",
     "discount_model": "discount_by_percent",
     "discount_value": 10.0,
     "trigger": {
@@ -9,12 +9,12 @@
     }
   },
   {
-    "type": "product_value_discount",
+    "type": "ProductValueDiscount",
     "discount_model": "change_price",
     "discount_value": 8.50,
     "trigger": {
       "type": "product_present_in_basket",
-      "product_id": "001",
+      "product_code": "001",
       "min_product_quantity": 2,
       "value": 60.0
     }
